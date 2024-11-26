@@ -14,17 +14,16 @@ with GraphDatabase.driver(URI, auth=AUTH) as driver:
             next (reader) #skip the header row 
 
             for i, row in enumerate(reader): #iterate through the rows 
-             #get all columns 
-             title = row[0]
-             print(title)
-             author = row[1]
-             publisher = row[2]
-             categories = row[3] #genres 
-             ratingsCount = row[4]
+                #get all columns 
+                title = row[0]
+                author = row[1]
+                publisher = row[2]
+                categories = row[3] #genres 
+                ratingsCount = row[4]
 
-            #create a node for every book, creating a node with label Book and properties title, author, publisher, categories, ratingsCount
+                #create a node for every book, creating a node with label Book and properties title, author, publisher, categories, ratingsCount
 
-            session.run("""
+                session.run("""
                         CREATE (b:Book { 
                         title: $title,
                         author: $author,
@@ -39,9 +38,9 @@ with GraphDatabase.driver(URI, auth=AUTH) as driver:
                         ratingsCount=int(ratingsCount) if ratingsCount.isdigit() else None #if ratings count is not a number then set it to None
                         )
             
-            #progress indication
-            if i %  100 == 0:
-                print(f"Processed {i} rows")
+                #progress indication
+                if i %  100 == 0:
+                    print(f"Processed {i} rows")
                         
 
 
