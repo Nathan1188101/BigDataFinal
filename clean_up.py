@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-
 import os
+
 #take in the data and clean it up from all the data we do not need to load it quicker later.
 file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'Books_rating.csv'))
 
