@@ -50,6 +50,12 @@ def main():
                 #calling to the author book connection function
                 print("Creating author to book connections now...")
                 session.execute_write(author_book_connections)
+
+                #calling the category book connections function 
+                print("Creating category connections now...")
+                session.execute_write(category_book_connections)
+
+                print("-----------------All completed------------------")
                         
 
 #tx is used to run the transaction (it executes neo4j queries)
@@ -70,6 +76,23 @@ def author_book_connections(tx):
         )
     for record in result:
         print(f"Connected {record['book1']} with {record['book2']} by the same author")
+
+#REMEMBER I think we need to increase db memory in order to execute this, we keep getting errors where we run out
+def category_book_connections(tx):
+    #matching all the books with the same category and creating an edge between them 
+    result = tx.run(
+        """
+        MATCH(b1:Book)
+        WHERE b1.categories IS NOT NULL AND b1.categories <> ""
+        WITH b1
+        MATCH (b2:Book)
+        WHERE b1.categories = b2.categories AND b1.title < b2.title
+        MERGE (b1)-[:SAME_CATEGORY]->(b2)
+        RETURN b1.title AS book1, b2.title AS book2;
+        """
+    )
+    for record in result: 
+        print(f"Connected {record['book1']} with {record['book2']} by the same category")
 
 if __name__ == "__main__":
     main()
