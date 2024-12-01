@@ -65,7 +65,6 @@ def author_book_connections(tx):
         """
         MATCH (b1:Book), (b2:Book)
         WHERE b1.author = b2.author 
-        //ignoring books that don't have an author
             AND b1.author IS NOT NULL 
             AND b1.author <> "" 
             AND id(b1) < id(b2)
