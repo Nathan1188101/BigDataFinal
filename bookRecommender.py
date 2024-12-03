@@ -3,7 +3,7 @@ import csv
 
 # Database connection
 URI = "bolt://localhost:7687"
-AUTH = ("neo4j", "supersecretpassword1")
+AUTH = ("neo4j", "password")
 #Fixed to not return duplicates but was just 2 print statements lol
 
 query2 = """
@@ -16,8 +16,10 @@ query2 = """
 # Connect to the database
 driver = GraphDatabase.driver(URI, auth=AUTH)
 
-# Function to calculate score of a book based on its reviews 
-def return_score(title_name):
+
+
+# Function to recommend books based on title
+def recommend_books_by_title(title_name):
     title_name = f"{title_name}" 
     print(title_name)
     with driver.session() as session:
@@ -32,7 +34,7 @@ def return_score(title_name):
 
 #try user input for the title name
 title = input("Enter the books's title: ")
-book_ratings = return_score(title)
+book_ratings = recommend_books_by_title(title)
 
 # Display the the books and they're respective reviews.
 # if book_ratings:
