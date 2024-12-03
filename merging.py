@@ -73,7 +73,7 @@ if gathered_books:
             score = return_score(book) #calls the function and passes the book title
             if score >= 4.0:
                 i += 1
-                print(f"Book: {book} with rating: {score}")
+                print(f"Book: {book} with rating: {score:.2f}") #rounding the score to 2 decimal places
             else:
                 continue
 
