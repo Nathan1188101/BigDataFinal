@@ -16,10 +16,8 @@ query2 = """
 # Connect to the database
 driver = GraphDatabase.driver(URI, auth=AUTH)
 
-
-
-# Function to recommend books based on title
-def recommend_books_by_title(title_name):
+# Function to calculate score of a book based on its reviews 
+def return_score(title_name):
     title_name = f"{title_name}" 
     print(title_name)
     with driver.session() as session:
@@ -34,7 +32,7 @@ def recommend_books_by_title(title_name):
 
 #try user input for the title name
 title = input("Enter the books's title: ")
-book_ratings = recommend_books_by_title(title)
+book_ratings = return_score(title)
 
 # Display the the books and they're respective reviews.
 # if book_ratings:

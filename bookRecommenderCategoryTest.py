@@ -24,9 +24,6 @@ def gather_similar_books(category_name):
         books = [(record["book"]) for record in result]
     return books
 
-
-
-
 #try user input for the title name
 title = input("Enter the category: ")
 book_ratings = gather_similar_books(title)
