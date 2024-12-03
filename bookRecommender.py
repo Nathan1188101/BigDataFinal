@@ -26,18 +26,21 @@ def recommend_books_by_title(title_name):
         result = session.run(query2, title=title_name)
         # Extract the books from the result. Logged originally after it kept failing and realized it returned an object
         books = [(record["book"], record["Rating"]) for record in result]
-        print(books)
-        return books
+        score = 0.0
+        for book in books:
+            score = score + float(book[1])
+        score = score/len(books)
+        return score
 
 #try user input for the title name
 title = input("Enter the books's title: ")
 book_ratings = recommend_books_by_title(title)
 
 # Display the the books and they're respective reviews.
-if book_ratings:
-    for book in book_ratings:
-        print(f"Book: {book[0]}, Rating: {book[1]}")
-else:
-    print("No results found for this title.") 
+# if book_ratings:
+#     for book in book_ratings:
+#         print(f"Book: {book[0]}, Rating: {book[1]}")
+# else:
+#     print("No results found for this title.") 
 
 driver.close()
