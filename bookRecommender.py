@@ -3,7 +3,7 @@ import csv
 
 # Database connection
 URI = "bolt://localhost:7687"
-AUTH = ("neo4j", "password")
+AUTH = ("neo4j", "supersecretpassword1")
 #Fixed to not return duplicates but was just 2 print statements lol
 
 query2 = """

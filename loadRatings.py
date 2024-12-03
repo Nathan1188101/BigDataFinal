@@ -3,7 +3,7 @@ import os, sys
 import csv
 
 URI = "bolt://localhost:7687"
-AUTH = ("neo4j", "password")
+AUTH = ("neo4j", "supersecretpassword1")
 
 with GraphDatabase.driver(URI, auth=AUTH) as driver: 
     with driver.session(database="neo4j") as session: 
