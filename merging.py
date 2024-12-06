@@ -52,13 +52,17 @@ class DisplayResults:
     # cherrypy to create a simple input form to gather the title.
     def index(self):
         return """
+                <div style="display: flex; justify-content: center; padding: 20px;">
                     <head> 
                         <link href="/style.css" rel="stylesheet">
                     </head>
-                    <form method="post" action="results">
+                    <form method="post" action="results" style="font-weight: bold; font-family: 'Arial', sans-serif;">
                       Enter a title: <input type="text" name="title" />
                       <button type="submit">Submit</button>
-                    </form>"""
+                    </form>
+                <div>
+                    
+                """
     
 
     #second page to display the results page
@@ -88,15 +92,15 @@ class DisplayResults:
 
 if __name__ == "__main__":
     conf = {
-        '/': {
-            'tools.sessions.on': True,
-            'tools.staticdir.root': os.path.abspath(os.getcwd())
-        },
-        '/static': {
-            'tools.staticdir.on': True,
-            'tools.staticdir.dir': './public'
-        }
+    '/': {
+        'tools.sessions.on': True,
+        'tools.staticdir.root': os.path.abspath(os.getcwd())
+    },
+    '/style.css': {
+        'tools.staticfile.on': True,
+        'tools.staticfile.filename': os.path.abspath("public/style.css"),
     }
+}
     cherrypy.quickstart(DisplayResults())
 
 driver.close()
