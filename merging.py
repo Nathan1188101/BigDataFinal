@@ -52,7 +52,7 @@ class DisplayResults:
     # cherrypy to create a simple input form to gather the title.
     def index(self):
         return """
-                <div style="display: flex; justify-content: center; padding: 20px;">
+                <div style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
                     <head> 
                         <link href="/style.css" rel="stylesheet">
                     </head>
@@ -60,8 +60,8 @@ class DisplayResults:
                       Enter a title: <input type="text" name="title" />
                       <button type="submit">Submit</button>
                     </form>
-                <div>
-                    
+                    <p style="margin-top: -10px;">case sensitive!</p>
+                <div/>
                 """
     
 
@@ -86,6 +86,13 @@ class DisplayResults:
                     output += f"<li>{book} - Rating: {score:.2f}</li>"
 
             output += "</ul>" # end of the html list
+            output += """<div style="display: flex; justify-content: center; padding: 20px;">
+
+                    <form method="post" action="results" style="font-weight: bold; font-family: 'Arial', sans-serif;">
+                      Enter a title: <input type="text" name="title" />
+                      <button type="submit">Submit</button>
+                    </form>
+                <div>"""
             return output
         else:
             return "<h1>No results found for this title.</h1>"
