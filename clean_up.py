@@ -27,6 +27,8 @@ df_final2 = df2.drop(columns=columns_to_drop2, errors='ignore')
 output_file_path2 = os.path.abspath(os.path.join(os.path.dirname(__file__), 'Books_data_cleaned.csv'))
 df_final2.to_csv(output_file_path2, index=False)
 
+
+#now create the nodes in the database.
 with GraphDatabase.driver(URI, auth=AUTH) as driver: 
     with driver.session(database="neo4j") as session: 
         print("connected") #debugging purposes 
@@ -102,7 +104,7 @@ with GraphDatabase.driver(URI, auth=AUTH) as driver:
                         )
             
                     #progress indication
-                    if i %  100 == 0:
+                    if i %  10000 == 0:
                         print(f"Processed {i} rows")
         print("Finished processing all rows from The cleaned books data file")
 
