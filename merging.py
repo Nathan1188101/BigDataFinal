@@ -91,16 +91,6 @@ class DisplayResults:
             return "<h1>No results found for this title.</h1>"
 
 if __name__ == "__main__":
-    conf = {
-    '/': {
-        'tools.sessions.on': True,
-        'tools.staticdir.root': os.path.abspath(os.getcwd())
-    },
-    '/style.css': {
-        'tools.staticfile.on': True,
-        'tools.staticfile.filename': os.path.abspath("public/style.css"),
-    }
-}
     cherrypy.quickstart(DisplayResults())
 
 driver.close()
